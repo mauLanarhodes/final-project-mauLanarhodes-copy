@@ -1,0 +1,37 @@
+<html>
+<head>
+  <title>Residents</title>
+</head>
+<body>
+  <h2>Residents</h2>
+  <form method="POST" action="/residents/add">
+    <input name="firstname" placeholder="First Name" required />
+    <input name="lastname" placeholder="Last Name" required />
+    <input name="age" type="number" placeholder="Age" required />
+    <select name="room" required>
+      <% rooms.forEach(r => { %>
+        <option value="<%= r.id %>">Room <%= r.number %> (Capacity: <%= r.capacity %>)</option>
+      <% }) %>
+    </select>
+    <button type="submit">Add Resident</button>
+  </form>
+
+  <table border="1">
+    <tr><th>Name</th><th>Age</th><th>Room</th><th>Actions</th></tr>
+    <% residents.forEach(resident => { %>
+      <tr>
+        <td><%= resident.firstname %> <%= resident.lastname %></td>
+        <td><%= resident.age %></td>
+        <td><%= resident.room %></td>
+        <td>
+          <form method="POST" action="/residents/delete/<%= resident.id %>">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+    <% }); %>
+  </table>
+
+  <a href="/floors">Manage Floors</a> | <a href="/rooms">Manage Rooms</a>
+</body>
+</html>
