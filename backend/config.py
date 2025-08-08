@@ -3,11 +3,12 @@ import os
 
 def get_db_connection():
     return mysql.connector.connect(
-        host=os.environ.get('DB_HOST'),
+        host='cis2368summer.cidyiu02y2ba.us-east-1.rds.amazonaws.com',
         port=3306,
-        user=os.environ.get('DB_USER'),
-        password=os.environ.get('DB_PASSWORD'),
-        database=os.environ.get('DB_NAME'),
+        user='admin',
+        password='Rental#car1234',
+        database='cis2368summerdb',
+        connection_timeout=5
 
     )
 # This function returns a connection to the MySQL database using the provided credentials.
